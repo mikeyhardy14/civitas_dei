@@ -2,25 +2,77 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0b1020;
+
+  /* Brand palette */
+  --brand-navy: #102649;
+  --brand-navy-soft: #1c3052;
+  --brand-gold: #c79a38;
+  --brand-gold-soft: #f5e3b5;
+  --brand-sky: #e6edf7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--brand-navy);
+  --color-primary-soft: var(--brand-sky);
+  --color-accent: var(--brand-gold);
+  --color-accent-soft: var(--brand-gold-soft);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  @apply bg-background text-foreground antialiased;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+main {
+  @apply flex-1;
+}
+
+/* ── Design system ────────────────────────────────────────────────────────── */
+
+/*
+ * 12-column grid  ·  8-point spacing system
+ *
+ * Column gaps use 8-pt units:
+ *   gap-4  = 16px  (2 × 8)
+ *   gap-6  = 24px  (3 × 8)
+ *   gap-8  = 32px  (4 × 8)
+ *   gap-16 = 64px  (8 × 8)
+ *
+ * Section vertical padding:
+ *   py-12  = 48px   inner pages, mobile
+ *   py-16  = 64px   home sections, mobile / inner desktop
+ *   py-24  = 96px   home sections, desktop
+ */
+
+@layer components {
+  /* Outer page wrapper ─ max-width + gutters */
+  .page-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 12-col grid, 8-pt gap (scales up at lg) */
+  .grid-12 {
+    @apply grid grid-cols-12 gap-6 lg:gap-8;
+  }
+
+  /* Eyebrow label — sits above every section headline */
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-slate-400;
+  }
+
+  /* Eyebrow on dark backgrounds */
+  .eyebrow-light {
+    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-amber-200/80;
+  }
+
+  /* Gold accent bullet used in lists */
+  .gold-bullet::before {
+    content: "✦";
+    @apply mr-2 text-[#c79a38];
+  }
 }
