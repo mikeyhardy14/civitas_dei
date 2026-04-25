@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -35,30 +36,39 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-sm">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-10">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#102649] text-[11px] font-bold tracking-wide text-white shadow-sm">
-              CD
-            </div>
+          <Link href="/" className="flex items-center gap-3.5">
+            <Image
+              src="/NEw%20logo.svg"
+              alt="Civitas Dei logo"
+              width={76}
+              height={76}
+              className="h-[76px] w-[76px] shrink-0 rounded-full object-cover shadow-sm"
+              priority
+            />
             <div className="hidden flex-col leading-tight sm:flex">
-              <span className="text-sm font-bold text-[#102649]">
+              <span
+                className="text-[34px] font-bold uppercase tracking-[0.08em] text-[#102649]"
+                style={{
+                  fontFamily:
+                    '"Aquinas Std Regular", "Times New Roman", Times, serif',
+                }}
+              >
                 Civitas Dei
               </span>
-              <span className="text-[10px] font-normal text-slate-500">
-                Renew the Church. Transform the Culture.
-              </span>
+
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-5 text-sm font-medium md:flex">
+          <nav className="hidden items-center gap-6.5 text-[15px] font-medium md:flex">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition-colors hover:text-[#102649] ${
+                className={`tracking-wide transition-colors hover:text-[#102649] ${
                   isActive(item.href)
                     ? "font-semibold text-[#102649]"
                     : "text-slate-600"
@@ -70,7 +80,7 @@ export function SiteHeader() {
 
             <Link
               href="/donate"
-              className="ml-2 inline-flex items-center rounded-full bg-[#c79a38] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b0882e]"
+              className="ml-3 inline-flex items-center rounded-full bg-[#c79a38] px-5.5 py-2 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#b0882e]"
             >
               Donate
             </Link>
@@ -80,7 +90,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3 md:hidden">
             <Link
               href="/donate"
-              className="inline-flex items-center rounded-full bg-[#c79a38] px-3 py-1.5 text-xs font-semibold text-white shadow-sm"
+              className="inline-flex items-center rounded-full bg-[#c79a38] px-4 py-2 text-sm font-semibold text-white shadow-sm"
             >
               Donate
             </Link>
@@ -88,7 +98,7 @@ export function SiteHeader() {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((prev) => !prev)}
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100"
             >
               {menuOpen ? (
                 /* X icon */
@@ -137,7 +147,7 @@ export function SiteHeader() {
             onClick={() => setMenuOpen(false)}
           />
           {/* Drawer panel */}
-          <div className="absolute right-0 top-[57px] flex h-[calc(100vh-57px)] w-72 flex-col bg-white shadow-xl">
+          <div className="absolute right-0 top-[84px] flex h-[calc(100vh-84px)] w-80 flex-col bg-white shadow-xl">
             <nav className="flex flex-col gap-1 px-4 pt-4 pb-6">
               {NAV_ITEMS.map((item) => (
                 <Link
