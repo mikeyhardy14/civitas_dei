@@ -6,11 +6,10 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
-  { href: "/about", label: "About" },
-  { href: "/programs", label: "Programs" },
+  { href: "/about", label: "About Us" },
+  { href: "/chapters", label: "Chapters" },
   { href: "/events", label: "Events" },
   { href: "/resources", label: "Resources" },
-  { href: "/for-priests", label: "For Priests" },
   { href: "/contact", label: "Contact" },
 ];
 
